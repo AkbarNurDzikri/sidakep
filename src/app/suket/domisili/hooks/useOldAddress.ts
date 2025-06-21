@@ -32,7 +32,7 @@ export default function useOldAddress(
 
   useEffect(() => {
     getProvinces(setFlashMessage, setIsFetchingProv, setProvinces);
-  }, []);
+  }, [, setFlashMessage]);
 
   useEffect(() => {
     if (currentOldProvince) {
@@ -43,7 +43,7 @@ export default function useOldAddress(
         currentOldProvince
       );
     }
-  }, [currentOldProvince]);
+  }, [currentOldProvince, setFlashMessage]);
 
   useEffect(() => {
     if (currentOldRegency) {
@@ -54,7 +54,7 @@ export default function useOldAddress(
         currentOldRegency
       );
     }
-  }, [currentOldRegency]);
+  }, [currentOldRegency, setFlashMessage]);
 
   useEffect(() => {
     if (currentOldDistrict) {
@@ -65,9 +65,7 @@ export default function useOldAddress(
         currentOldDistrict
       );
     }
-  }, [currentOldDistrict]);
-
-  useEffect(() => {}, [currentOldVillage]);
+  }, [currentOldDistrict, setFlashMessage]);
 
   return {
     provinces,

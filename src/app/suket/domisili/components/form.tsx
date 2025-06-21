@@ -29,6 +29,7 @@ export default function SuketDomisiliForm({
   });
   const [openModal, setOPenModal] = useState(false);
   const [showPdf, setShowPdf] = useState(false);
+  console.log(flashMessage);
 
   const {
     provinces,

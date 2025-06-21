@@ -38,7 +38,7 @@ export default function useNewAddress(
 
   useEffect(() => {
     getProvinces(setFlashMessage, setIsFetchingNewProv, setNewProvinces);
-  }, []);
+  }, [setFlashMessage]);
 
   useEffect(() => {
     if (currentNewProvince) {
@@ -49,7 +49,7 @@ export default function useNewAddress(
         currentNewProvince
       );
     }
-  }, [currentNewProvince]);
+  }, [currentNewProvince, setFlashMessage]);
 
   useEffect(() => {
     if (currentNewRegency) {
@@ -60,7 +60,7 @@ export default function useNewAddress(
         currentNewRegency
       );
     }
-  }, [currentNewRegency]);
+  }, [currentNewRegency, setFlashMessage]);
 
   useEffect(() => {
     if (currentNewDistrict) {
@@ -71,7 +71,7 @@ export default function useNewAddress(
         currentNewDistrict
       );
     }
-  }, [currentNewDistrict]);
+  }, [currentNewDistrict, setFlashMessage]);
 
   return {
     newProvinces,
