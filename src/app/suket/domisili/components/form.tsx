@@ -17,6 +17,7 @@ import useNewAddress from "../hooks/useNewAddress";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import { SuketDomisiliPDF } from "./pdf";
 import { Modal } from "@/components/atoms/modal";
+import { FieldErrors } from "react-hook-form";
 
 export default function SuketDomisiliForm({
   defaultValues,
@@ -66,22 +67,31 @@ export default function SuketDomisiliForm({
       const timer = setTimeout(() => {
         setShowPdf(true);
       }, 100);
-
-      return () => {
-        clearTimeout(timer);
-      };
+      return () => clearTimeout(timer);
     } else {
       setShowPdf(false);
     }
   }, [openModal]);
+
+  const handleError = (errors: FieldErrors<ISuketDomisili>) => {
+    const firstErrorField = Object.keys(errors)[0];
+    const element = document.querySelector(`[name="${firstErrorField}"]`);
+    if (element) {
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
+        (element as HTMLElement).focus();
+      }, 100);
+    }
+  };
 
   return (
     <Card className="w-full p-1 py-5">
       <CardContent>
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit((formData: ISuketDomisili) =>
-              handleService(formData)
+            onSubmit={form.handleSubmit(
+              (formData: ISuketDomisili) => handleService(formData),
+              handleError
             )}
           >
             <InputFields form={form} />

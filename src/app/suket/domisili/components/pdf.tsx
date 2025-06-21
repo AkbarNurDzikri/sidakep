@@ -134,7 +134,7 @@ export const SuketDomisiliPDF = ({ data }: { data: ISuketDomisili }) => (
             {
               flexDirection: "column",
               alignItems: "flex-start",
-              marginLeft: "37%",
+              marginLeft: "36%",
             },
           ]}
         >
@@ -161,7 +161,7 @@ export const SuketDomisiliPDF = ({ data }: { data: ISuketDomisili }) => (
             {
               flexDirection: "column",
               alignItems: "flex-start",
-              marginLeft: "37%",
+              marginLeft: "36%",
             },
           ]}
         >
