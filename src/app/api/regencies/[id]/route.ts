@@ -1,12 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: NextRequest) {
   try {
-    const { id } = params;
+    const url = new URL(req.url);
+    const pathParts = url.pathname.split("/"); // misal: /api/regencies/33
+    const id = pathParts[pathParts.length - 1]; // ambil "33"
 
     const response = await fetch(
       `https://open-api.my.id/api/wilayah/regencies/${id}`
@@ -16,10 +15,7 @@ export async function GET(
 
     return NextResponse.json({ success: true, data: result.data });
   } catch (err: unknown) {
-    if (err instanceof Error) {
-      return NextResponse.json({ success: false, message: err.message });
-    } else {
-      return NextResponse.json({ success: false, message: String(err) });
-    }
+    const message = err instanceof Error ? err.message : String(err);
+    return NextResponse.json({ success: false, message }, { status: 500 });
   }
 }
