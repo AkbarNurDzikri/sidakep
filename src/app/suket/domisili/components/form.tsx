@@ -128,20 +128,15 @@ export default function SuketDomisiliForm({
               />
             )}
 
-            <div className="flex items-center justify-center gap-3 md:block">
-              <Button type="submit" className="mt-3 w-1/2 md:w-full">
-                Simpan
+            {isFormValid && (
+              <Button
+                type="button"
+                className="mt-3 w-1/2 md:w-full bg-slate-700 hover:bg-slate-800"
+                onClick={() => setOPenModal(true)}
+              >
+                Preview
               </Button>
-              {isFormValid && (
-                <Button
-                  type="button"
-                  className="mt-3 w-1/2 md:w-full bg-slate-700 hover:bg-slate-800"
-                  onClick={() => setOPenModal(true)}
-                >
-                  Preview
-                </Button>
-              )}
-            </div>
+            )}
           </form>
         </Form>
       </CardContent>
